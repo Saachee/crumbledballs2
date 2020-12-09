@@ -1,0 +1,58 @@
+class dustbin {
+
+    constructor(x,y){
+         this.x=x;
+         this.y=y;
+         this.dustbinWidth=200;
+         this.dustbinHeight=213;
+         this.wallThickness=20;
+
+         this.Image= loadImage("dustbingreen.png");
+         this.bottomBody=Bodies.rectangle(this.x,this.y,this.dustbinWidth,this.wallThickness,{isStatic:true})
+         this.leftWallbody=Bodies.rectangle(this.x-this.dustbinHeight/2,this.y-this.dustbinHeight/2,this.wallThickness,this.dustbinHeight,{isStatic:true})
+         this.rightWallbody=Bodies.rectangle(this.x-this.dustbinWidth/2,this.y-this.dustbinHeight/2,this.wallThickness,this.dustbinHeight,{isStatic:true})
+        
+        World.add(world,this.bottomBody);
+        World.add(world,this.leftWallbody);
+        World.add(world,this.rightWallbody);
+
+    }
+
+    display() {
+
+        var posBottom=this.bottomBody,position;
+        var posleft=this.leftWallbody,position;
+        var posRight=this.rightWallbody,position;
+
+        push()
+        translate(posleft.x,posleft.y);
+        rectMode(CENTER)
+        angleMode(RADIANS)
+        fill(255)
+        rotate(this.angle)
+        pop()
+
+        push()
+        translate(posRight.x,posRight.y);
+        rectMode(CENTER)
+        angleMode(RADIANS)
+        fill(255)
+        rotate(-1*this.angle)
+        pop()
+
+        push()
+        translate(posBottom.x,posBottom.y+10);
+        rectMode(CENTER)
+        angleMode(RADIANS)
+        fill(255)
+        imageMode(CENTER)
+        image(this.image,0,this.dustbinHeight/2,this.dustbinWidth,this.dustbinHeight);
+        pop()
+
+
+
+
+
+    }
+    
+}
